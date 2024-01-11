@@ -1,5 +1,8 @@
 Create Database
- - Table with Fields Index, Name, Quantity, Unit, Purchased
+ - Table with Fields Id, Name, Quantity, Unit, Purchased
+
+Server side
+
 Identify components
  - Entry Form
  - Shopping List
