@@ -20,6 +20,33 @@ router.get('/', (req, res) => {
 
 // POST Routes
 
+router.post('/', (req, res) => {
+  console.log('req.body:', req.body);
+  
+  // POST query TEXT and Args
+  const queryText = `INSERT INTO "shopping_items" ("name", "quantity", "unit", "purchased")
+    VALUES ($1, $2, $3, $4);`;
+  const queryArgs = [
+    req.body.name,
+    req.body.quantity,
+    req.body.unit,
+    req.body.purchased
+  ];
+
+  //DB Query
+  pool.query(queryText, queryArgs)
+  .then((result) => {
+    console.log('List Item added to DB:', req.body);
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    console.error("ERROR in POST DB Query:", err);
+    res.sendStatus(500);
+  });
+
+
+});
+
 
 // UPDATE Routes
 
