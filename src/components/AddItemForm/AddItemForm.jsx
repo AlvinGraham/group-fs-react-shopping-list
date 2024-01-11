@@ -40,15 +40,17 @@ function AddItemForm() {
           <input id="itemInput" onChange = {(event) => setItemValue(event.target.value)}
             value={itemValue}/>
         </label>
+        <br/>
         <label>Quantity:
           <input id="quantityInput" onChange = {(event) => setQuantityValue(event.target.value)}
             value={quantityValue}/>
         </label>
-        <br></br>
+        
         <label>Unit:
           <input id="unitInput" onChange = {(event) => setUnitValue(event.target.value)}
             value={unitValue}/>
         </label>
+        <br/>
         <button type="submit">Save</button>
 
       </form>
