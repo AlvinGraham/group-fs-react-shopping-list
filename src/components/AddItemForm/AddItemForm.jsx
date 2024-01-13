@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import './AddItemForm.css';
 
-function AddItemForm() {
+function AddItemForm(props) {
 
   const [itemValue, setItemValue] = useState('');
   const [quantityValue, setQuantityValue] = useState('');
@@ -24,6 +24,7 @@ function AddItemForm() {
       setItemValue('');
       setQuantityValue('');
       setUnitValue('');
+      props.refreshShoppingListCallback();
   })
     .catch((err) => {
       console.error('ERROR in client POST:', err)
@@ -34,7 +35,7 @@ function AddItemForm() {
 
   return (
     <>
-      <h1>Add an Item:</h1>
+      <h2>Add an Item:</h2>
       <form onSubmit={handleItemFormSubmit}>
         <label>Item:
           <input id="itemInput" onChange = {(event) => setItemValue(event.target.value)}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '../Header/Header.jsx'
 import './App.css';
 import AddItemForm from '../AddItemForm/AddItemForm.jsx';
+import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <AddItemForm />
+      <AddItemForm refreshShoppingListCallback={refreshShoppingList}/>
+      <ShoppingList shoppingListArray={shoppingList} />
     </div>
   );
 }
