@@ -1,0 +1,21 @@
+.card {
+  border: 1px solid lightgrey;
+  border-radius: 10px;;
+  height: 175px;
+  width: 175px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 10px;
+}
+
+.card p {
+  width: fit-content;
+  margin: 8px;
+}
+
+.buttonField {
+  margin-top: 8px;
+  display: flex;
+}
