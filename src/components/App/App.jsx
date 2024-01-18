@@ -1,24 +1,24 @@
-import React from 'react';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import Header from '../Header/Header.jsx'
-import './App.css';
-import AddItemForm from '../AddItemForm/AddItemForm.jsx';
-import ShoppingList from '../ShoppingList/ShoppingList.jsx';
-
+import React from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Header from "../Header/Header.jsx";
+import "./App.css";
+import AddItemForm from "../AddItemForm/AddItemForm.jsx";
+import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
   const [shoppingList, setShoppingList] = useState([]);
 
   const refreshShoppingList = () => {
-    axios.get('/api/itemList')
+    axios
+      .get("/api/itemList")
       .then((response) => {
         setShoppingList(response.data);
-        console.log('Data Received from DB:');
+        console.log("Data Received from DB:");
         console.table(response.data);
       })
       .catch((err) => {
-        console.error('Error in client GET:', err);
+        console.error("Error in client GET:", err);
       });
   };
 
@@ -26,13 +26,14 @@ function App() {
     refreshShoppingList();
   }, []);
 
-
-
   return (
     <div className="App">
       <Header />
-      <AddItemForm refreshShoppingListCallback={refreshShoppingList}/>
-      <ShoppingList shoppingListArray={shoppingList} />
+      <AddItemForm refreshShoppingListCallback={refreshShoppingList} />
+      <ShoppingList
+        shoppingListArray={shoppingList}
+        refreshShoppingListCallback={refreshShoppingList}
+      />
     </div>
   );
 }
