@@ -48,14 +48,25 @@ router.post("/", (req, res) => {
 
 // UPDATE Routes
 
-router.put("/:id", (req, res) => {
-  const queryText = `UPDATE "shopping_items" SET "purchased" = false WHERE id = $1;`;
+router.put("/", (req, res) => {
+  console.log("req.body", req.body, "purchasedTo", req.body.purchasedTo);
+  let queryText;
+  if (req.body.purchasedTo === false) {
+    queryText = `UPDATE "shopping_items" SET "purchased" = false WHERE id = $1;`;
+  } else {
+    queryText = `UPDATE "shopping_items" SET "purchased" = true WHERE id = $1;`;
+  }
+  console.log("queryText", queryText);
+
+  //  console.log(queryText);
 
   //DB Query
   pool
-    .query(queryText, [req.params.id])
+    .query(queryText, [req.body.itemID])
     .then((result) => {
-      console.log(`List Item ${req.params.id} changed to purchased - FALSE`);
+      console.log(
+        `List Item ${req.body.itemID} changed to purchased - ${req.body.purchasedTo}`
+      );
       res.sendStatus(200);
     })
     .catch((err) => {
