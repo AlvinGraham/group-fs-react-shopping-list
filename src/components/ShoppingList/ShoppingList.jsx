@@ -13,30 +13,24 @@ export default function ShoppingList({
 
   function resetBtnHandler(event) {
     event.preventDefault();
-    // const params3 = new URLSearchParams([
-    //   ["foo", "1"],
-    //   ["bar", "2"],
-    // ]);
+
     for (const item of shoppingListArray) {
       let updatedItem = {
         itemID: item.id,
         purchasedTo: false,
       };
-      // const routeParams = new URLSearchParams([
-      //   ["itemID", `${item.id}`],
-      //   ["changePurchased", "false"],
-      // ]);
-      // const config = { params: routeParams };
+
       console.log("updatedItem", updatedItem);
 
       axios
         .put(`/api/itemList/`, updatedItem)
-        .then((response) => {})
+        .then((response) => {
+          refreshShoppingListCallback();
+        })
         .catch((err) => {
           console.error("ERROR in client PUT", err);
         });
     }
-    refreshShoppingListCallback();
   }
 
   function clearBtnHandler(event) {
@@ -65,6 +59,7 @@ export default function ShoppingList({
             <Card
               key={itemIndex}
               cardData={shoppingItem}
+              refreshShoppingListCallback={refreshShoppingListCallback}
             />
           );
         })}

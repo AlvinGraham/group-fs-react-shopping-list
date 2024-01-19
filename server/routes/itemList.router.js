@@ -49,20 +49,12 @@ router.post("/", (req, res) => {
 // UPDATE Routes
 
 router.put("/", (req, res) => {
-  console.log("req.body", req.body, "purchasedTo", req.body.purchasedTo);
-  let queryText;
-  if (req.body.purchasedTo === false) {
-    queryText = `UPDATE "shopping_items" SET "purchased" = false WHERE id = $1;`;
-  } else {
-    queryText = `UPDATE "shopping_items" SET "purchased" = true WHERE id = $1;`;
-  }
-  console.log("queryText", queryText);
-
-  //  console.log(queryText);
+  // console.log("req.body", req.body, "purchasedTo", req.body.purchasedTo);
+  let queryText = `UPDATE "shopping_items" SET "purchased" = $1 WHERE id = $2;`;
 
   //DB Query
   pool
-    .query(queryText, [req.body.itemID])
+    .query(queryText, [req.body.purchasedTo, req.body.itemID])
     .then((result) => {
       console.log(
         `List Item ${req.body.itemID} changed to purchased - ${req.body.purchasedTo}`
