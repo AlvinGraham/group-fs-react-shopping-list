@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./Card.css";
 import axios from "axios";
+import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 export default function Card({ cardData, refreshShoppingListCallback }) {
   // console.log(props.cardData);
@@ -39,13 +42,24 @@ export default function Card({ cardData, refreshShoppingListCallback }) {
       <p>{cardData.name}</p>
       <p>
         {cardData.quantity} {cardData.unit}{" "}
-        {cardData.purchased ? "true" : "false"}
       </p>
 
       {!cardData.purchased && (
         <div className="buttonField">
-          <button onClick={buyButtonHandler}>Buy</button>
-          <button onClick={removeButtonHandler}>Remove</button>
+          <Button
+            onClick={buyButtonHandler}
+            variant="outlined"
+            size="small"
+            endIcon={<AttachMoneyIcon />}>
+            Buy
+          </Button>
+          <Button
+            onClick={removeButtonHandler}
+            variant="outlined"
+            endIcon={<DeleteIcon />}
+            size="small">
+            Remove
+          </Button>
         </div>
       )}
     </div>
