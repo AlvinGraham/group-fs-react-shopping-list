@@ -1,8 +1,8 @@
 .card {
   border: 1px solid lightgrey;
-  border-radius: 10px;;
-  height: 175px;
-  width: 175px;
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -18,4 +18,6 @@
 .buttonField {
   margin-top: 8px;
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
